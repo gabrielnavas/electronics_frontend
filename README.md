@@ -1,7 +1,13 @@
-## Electronics E-commerce
+<div>
+  <h1> Electronics Frontend E-commerce
+  <br>
+  <a href="https://github.com/gabrielnavas/electronics_backend">
+    <strong>Check the backend</strong>
+  </a>
+</div>
+<br/> 
 
-
-#### Built With
+<strong>Built With</strong>
 
 - reactjs
 - react-router-dom
