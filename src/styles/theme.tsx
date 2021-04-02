@@ -13,6 +13,7 @@ const theme = {
     inputErrorColor: '#9b2828',
     buttonBackground: '#7289da',
     buttonColor: '#7289da',
+    itemList: '#242629',
   },
   spacings: {
     paddings: {
@@ -22,7 +23,7 @@ const theme = {
   },
   bordersRadius: {
     card: '5px',
-    button: '8px',
+    button: '4px',
   },
 };
 

@@ -1,9 +1,15 @@
 import React from 'react';
 
 import {
-  Wrapper,
   Card,
   CardTitle,
+} from '../../../common/styles/Card';
+
+import {
+  Wrapper,
+} from '../../../common/styles/Wrapper';
+
+import {
   InputGroup,
   InputTitle,
   Input,
