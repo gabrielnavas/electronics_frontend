@@ -1,5 +1,6 @@
 import React from 'react';
-import { Client, getAll } from '../../../../infra/api/client';
+import { ClientModel } from '../../../../domain/models/client';
+import { getAll } from '../../../../infra/api/client';
 
 import {
   Card,
@@ -17,7 +18,7 @@ import {
 } from './styles';
 
 export default () => {
-  const [clients, setClients] = React.useState([] as Client[]);
+  const [clients, setClients] = React.useState([] as ClientModel[]);
 
   React.useEffect(() => {
     (async () => {
@@ -31,9 +32,7 @@ export default () => {
       <Card>
         <CardTitle>Clients List</CardTitle>
         <List>
-          { clients.map((client) => (
-            <ItemList key={client.id} name={client.name} email={client.email} />
-          ))}
+          { clients.map((client) => <ItemList key={client.id} client={client} />)}
         </List>
       </Card>
     </Wrapper>

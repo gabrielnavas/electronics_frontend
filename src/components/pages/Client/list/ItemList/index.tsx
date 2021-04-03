@@ -1,4 +1,7 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
+import { ClientModel } from '../../../../../domain/models/client';
+import paths from '../../../../../routes/paths';
 
 import {
   Container,
@@ -10,18 +13,35 @@ import {
 } from './styles';
 
 type Props = {
-  name: string
-  email: string
+  client: ClientModel
 }
 
-export default ({ name, email }: Props) => (
-  <Container>
-    <Selectable>
-      <AttributeName>{name}</AttributeName>
-      <AttributeEmail>{email}</AttributeEmail>
-    </Selectable>
-    <Actions>
-      <ButtonDelete><span>Remove</span></ButtonDelete>
-    </Actions>
-  </Container>
-);
+export default ({ client }: Props) => {
+  const history = useHistory();
+
+  const handleRemoveOnClick = React.useCallback(() => {
+  }, []);
+
+  const handleViewOnClick = React.useCallback(() => {
+    history.push({
+      pathname: paths.CLIENT_CREATE,
+      state: client,
+    });
+  }, []);
+
+  return (
+    <Container>
+      <Selectable onClick={handleViewOnClick}>
+        <AttributeName>{client.name}</AttributeName>
+        <AttributeEmail>{client.email}</AttributeEmail>
+      </Selectable>
+      <Actions>
+        <ButtonDelete
+          onClick={handleRemoveOnClick}
+        >
+          <span>Remove</span>
+        </ButtonDelete>
+      </Actions>
+    </Container>
+  );
+};
