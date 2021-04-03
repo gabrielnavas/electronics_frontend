@@ -1,4 +1,5 @@
 import React from 'react';
+import { Client, getAll } from '../../../../infra/api/client';
 
 import {
   Card,
@@ -15,18 +16,26 @@ import {
   List,
 } from './styles';
 
-export default () => (
-  <Wrapper>
-    <Card>
-      <CardTitle>Clients List</CardTitle>
-      <List>
-        <ItemList name="Gabriel" email="gabriel@email.comaaaa" />
-        <ItemList name="Gabriel" email="gabrieaaaaaaaaaaaaaaaaaaaal@email.com" />
-        <ItemList name="Gabriel" email="gabriel@emaiaaal.com" />
-        <ItemList name="Gabriel" email="gabriel@email.com" />
-        <ItemList name="Gabriel" email="gabriel@emaiaaaal.com" />
-        <ItemList name="Gabriel" email="gabriel@email.com" />
-      </List>
-    </Card>
-  </Wrapper>
-);
+export default () => {
+  const [clients, setClients] = React.useState([] as Client[]);
+
+  React.useEffect(() => {
+    (async () => {
+      const resultClients = await getAll();
+      setClients(resultClients);
+    })();
+  }, []);
+
+  return (
+    <Wrapper>
+      <Card>
+        <CardTitle>Clients List</CardTitle>
+        <List>
+          { clients.map((client) => (
+            <ItemList key={client.id} name={client.name} email={client.email} />
+          ))}
+        </List>
+      </Card>
+    </Wrapper>
+  );
+};
