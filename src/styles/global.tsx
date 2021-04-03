@@ -13,6 +13,10 @@ const GlobalStyle = createGlobalStyle`
     outline: none;
   }
 
+  button {
+    outline: none;
+  }
+
   body, #root {
     height: 100vh;
   }

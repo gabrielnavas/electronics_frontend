@@ -2,6 +2,7 @@ import React from 'react';
 
 import {
   Container,
+  Selectable,
   AttributeName,
   AttributeEmail,
   Actions,
@@ -15,8 +16,10 @@ type Props = {
 
 export default ({ name, email }: Props) => (
   <Container>
-    <AttributeName>{name}</AttributeName>
-    <AttributeEmail>{email}</AttributeEmail>
+    <Selectable>
+      <AttributeName>{name}</AttributeName>
+      <AttributeEmail>{email}</AttributeEmail>
+    </Selectable>
     <Actions>
       <ButtonDelete><span>Remove</span></ButtonDelete>
     </Actions>
