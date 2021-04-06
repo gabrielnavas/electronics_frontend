@@ -3,12 +3,12 @@ import { ThemeProvider } from 'styled-components';
 
 const theme = {
   colors: {
-    border: '#7289da',
+    border: '#667fd8',
     text: '#bdbdbd',
     titleText: '#99aab5',
     background: '#23272a',
     card: '#2c2f33',
-    inputBackground: '#99aab5',
+    inputBackground: '#abbeca',
     inputColor: '#23272a',
     inputErrorColor: '#9b2828',
     buttonBackground: '#7289da',

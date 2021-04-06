@@ -4,6 +4,7 @@ export const Card = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-width: 350px;
   align-items: center;
   background: ${({ theme }) => theme.colors.card};
   padding: ${({ theme }) => theme.spacings.paddings.card};
