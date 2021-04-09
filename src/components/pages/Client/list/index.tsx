@@ -1,12 +1,13 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { ClientModel } from '../../../../domain/models/client';
 import { getAll } from '../../../../infra/api/client/get-all';
 import { getAllWithFilters } from '../../../../infra/api/client/get-all-with-filters';
 
-import {
-  Card,
-  CardTitle,
-} from '../../../common/styles/Card';
+import routesPage from '../../../../routes/paths';
+
+import Card from '../../../common/Card';
+import ButtonHeader from '../../../common/Card/ButtonHeader';
 
 import {
   Wrapper,
@@ -15,6 +16,7 @@ import {
 import ItemList from './ItemList';
 
 import {
+  Body,
   List,
   EmptyList,
   SearchContainer,
@@ -31,6 +33,8 @@ export default () => {
   const [searchInput, setSearchInput] = React.useState('');
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [errorSearchInput, setErrorSearchInput] = React.useState('');
+
+  const history = useHistory();
 
   React.useEffect(() => {
     handleEmptySearchInput();
@@ -67,35 +71,45 @@ export default () => {
 
   return (
     <Wrapper>
-      <Card>
-        <CardTitle>Clients List</CardTitle>
-        <SearchContainer>
-          <InputGroup>
-            <Input
-              placeholder="search: name, email..."
-              autoFocus
-              onChange={(e) => setSearchInput(e.target.value)}
-              value={searchInput}
-              onKeyDown={(e) => e.key === 'Enter' && handleOnButtonSearch()}
-            />
-            <ButtonSearch onClick={handleOnButtonSearch}>
-              { isLoading
-                ? <IconLoadingWait />
-                : <IconSearch />}
-            </ButtonSearch>
-          </InputGroup>
-          <ErrorSearchInput>{errorSearchInput}</ErrorSearchInput>
-        </SearchContainer>
-        <List>
-          { clients.length > 0
-            ? clients.map((client) => (
-              <ItemList
-                key={client.id}
-                client={client}
+      <Card
+        buttonsRightHeader={(
+          <ButtonHeader
+            onClick={() => history.push(routesPage.CLIENT_CREATE)}
+          >
+            <span>Create One</span>
+          </ButtonHeader>
+          )}
+        titleName="Client List"
+      >
+        <Body>
+          <SearchContainer>
+            <InputGroup>
+              <Input
+                placeholder="search: name, email..."
+                autoFocus
+                onChange={(e) => setSearchInput(e.target.value)}
+                value={searchInput}
+                onKeyDown={(e) => e.key === 'Enter' && handleOnButtonSearch()}
               />
-            ))
-            : <EmptyList>Empty list.</EmptyList>}
-        </List>
+              <ButtonSearch onClick={handleOnButtonSearch}>
+                { isLoading
+                  ? <IconLoadingWait />
+                  : <IconSearch />}
+              </ButtonSearch>
+            </InputGroup>
+            <ErrorSearchInput>{errorSearchInput}</ErrorSearchInput>
+          </SearchContainer>
+          <List>
+            { clients.length > 0
+              ? clients.map((client) => (
+                <ItemList
+                  key={client.id}
+                  client={client}
+                />
+              ))
+              : <EmptyList>Empty list.</EmptyList>}
+          </List>
+        </Body>
       </Card>
     </Wrapper>
   );

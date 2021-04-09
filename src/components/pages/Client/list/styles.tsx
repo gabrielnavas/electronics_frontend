@@ -1,13 +1,17 @@
 import styled from 'styled-components';
-import { SearchIcon } from '../../../common/Icon';
-import { LoadingIcon } from '../../../common/IconsAnimated';
+import { SearchIcon } from '../../../common/icons/Icon';
+import { LoadingIcon } from '../../../common/icons/IconsAnimated';
+
+export const Body = styled.section`
+  display: flex;
+  flex-direction: column;
+  margin: 40px;
+`;
 
 export const IconLoadingWait = () => (
   <LoadingIcon
     color="#FFF"
     type="spokes"
-    width={11}
-    height={11}
   />
 );
 
@@ -23,7 +27,7 @@ export const EmptyList = styled.div`
   width: 100%;
   padding: 2px 0;
   border-radius: 15px;
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 400;
   font-family: 'Times New Roman', Times, serif;
 `;
@@ -36,20 +40,21 @@ export const SearchContainer = styled.div`
 
 export const InputGroup = styled.div`
   display: flex;
-  height: 20px;
-  margin: 2px 0;
+  margin-bottom: 10px;
+  height: 35px;
 `;
 
 export const Input = styled.input`
   border-bottom-left-radius: 8px;
   border-top-left-radius: 8px;
   height: 100%;
-  padding: 3px 8px;
+  min-width: 400px;
+  padding: 0 8px;
   background-color: ${({ theme }) => theme.colors.inputBackground};
   color: ${({ theme }) => theme.colors.inputColor};
   font-weight: 400;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 13px;
+  font-size: 20px;
   border: 1px solid ${({ theme }) => theme.colors.inputBackground};
 
   &:focus {
@@ -67,10 +72,15 @@ export const ButtonSearch = styled.button`
   border-bottom-right-radius: 8px;
   border-top-right-radius: 8px;
   height: 100%;
-  padding: 0 5px;
+  width: 50px;
   cursor: pointer;
   background-color: #23272a;
   border: 0.5px solid #23272a;
+
+  & > svg {
+    min-height: 20px;
+    min-width: 20px;
+  }
 
   &:hover {
     border: 0.5px solid ${({ theme }) => theme.colors.border};
